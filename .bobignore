@@ -1,0 +1,27 @@
+# IBM Bob ignore file
+# Prevents Bob from accidentally processing sensitive files
+
+# Virtual environment
+.venv/
+
+# Runtime upload storage (user files, never committed)
+uploads/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Environment and secrets
+.env
+*.env
+*.key
+*.pem
+*.p12
+*.pfx
+ibm_cloud_credentials.json
+
+# OS files
+.DS_Store
+Thumbs.db

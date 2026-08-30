@@ -1,0 +1,16 @@
+{
+  "incident_id": "INC-2026-001",
+  "service": "payment-service",
+  "title": "Payment requests failing after v2.4 deployment",
+  "severity": "HIGH",
+  "deployment_version": "v2.4",
+  "incident_start": "2026-08-29T10:42:11Z",
+  "user_impact": "Some customers receive HTTP 500 responses for valid zero-value payments.",
+  "error_summary": "ValueError: Invalid payment amount",
+  "description": "Some payment requests began failing immediately after a validation change was deployed.",
+  "hypotheses": [
+    "Payment validation rejects zero as if it were missing.",
+    "Database latency caused payment processing failures.",
+    "A deployment configuration change routed requests incorrectly."
+  ]
+}

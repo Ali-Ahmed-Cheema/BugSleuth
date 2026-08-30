@@ -1,0 +1,36 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Runtime upload storage (user files -- never commit these)
+uploads/
+
+# Environment and secrets -- NEVER commit credentials
+.env
+*.env
+.env.local
+.env.production
+ibm_cloud_credentials.json
+*.key
+*.pem
+*.p12
+*.pfx
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

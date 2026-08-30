@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | BugSleuth</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="/" aria-label="BugSleuth home">
+        <span class="brand-mark">BS</span>
+        <span class="brand-text">
+          <strong>BUGSLEUTH</strong>
+          <small>AI Incident Investigation Platform</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <button type="button" id="header-new-investigation" class="nav-link-button primary">New Investigation</button>
+        <button type="button" id="header-demo-button" class="nav-link-button secondary">Demo Incident</button>
+        <a href="/help">Help</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-hero">
+      <p class="kicker">ABOUT</p>
+      <h1>BugSleuth: The AI Incident Tribunal</h1>
+      <p class="hero-copy">
+        BugSleuth is an AI-powered software incident investigation platform designed to help developers investigate software failures through evidence, critical analysis, and verification.
+      </p>
+      <p class="hero-copy muted">
+        Unlike traditional AI debugging tools that simply provide an answer, BugSleuth treats every potential root cause as a hypothesis that must be investigated and challenged.
+      </p>
+      <div class="quote-panel">
+        <span>Core philosophy</span>
+        <strong>“Don’t just let AI find the bug. Make it prove its case.”</strong>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">THE PROBLEM</span>
+        <h2>Why this exists</h2>
+      </div>
+      <div class="content-grid two-up">
+        <div class="info-card">
+          <p>
+            When software incidents occur, developers often have to work through large amounts of source code, logs, deployment data, and change history while evaluating several possible explanations at once.
+          </p>
+          <p>
+            Some explanations can sound convincing because they are plausible, but that does not mean they are supported by evidence. In high-pressure situations, a misleading conclusion can be costly and slow the real fix.
+          </p>
+        </div>
+        <div class="info-card">
+          <ul class="card-list">
+            <li>Large, noisy evidence sets</li>
+            <li>Multiple possible root causes</li>
+            <li>Recent code or deploy changes to consider</li>
+            <li>Difficulty separating facts from assumptions</li>
+            <li>AI-generated answers that need verification</li>
+          </ul>
+        </div>
+      </div>
+      <p class="supporting-text">
+        BugSleuth is designed to make AI-assisted debugging more transparent, evidence-based, and trustworthy.
+      </p>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">HOW IT WORKS</span>
+        <h2>Investigation workflow</h2>
+      </div>
+      <div class="flow-diagram" aria-label="BugSleuth workflow diagram">
+        <span>INCIDENT</span>
+        <span class="arrow">↓</span>
+        <span>EVIDENCE COLLECTION</span>
+        <span class="arrow">↓</span>
+        <span>INDEPENDENT INVESTIGATION</span>
+        <span class="arrow">↓</span>
+        <span>AI TRIBUNAL</span>
+        <span class="arrow">↓</span>
+        <span>VERDICT</span>
+        <span class="arrow">↓</span>
+        <span>CONFIDENCE LEDGER</span>
+        <span class="arrow">↓</span>
+        <span>VERIFICATION</span>
+      </div>
+
+      <div class="content-grid three-up">
+        <article class="info-card">
+          <h3>1. Project Intelligence</h3>
+          <p>BugSleuth automatically analyzes repository structure, technologies, tests, and other available project context.</p>
+        </article>
+        <article class="info-card">
+          <h3>2. Auditable Evidence</h3>
+          <p>Different investigators review source code, logs, Git history, CI/CD workflows, and deployment context. Each directly cited item receives an E-NNN evidence ID and is labelled as a Fact.</p>
+        </article>
+        <article class="info-card">
+          <h3>3. The AI Tribunal</h3>
+          <p>Specialized roles examine the evidence from different angles: prosecutor, defense, and judge. Their reasoning cites evidence IDs, shows the causal chain, and records counterarguments.</p>
+        </article>
+        <article class="info-card">
+          <h3>4. Transparent Verdict</h3>
+          <p>The Judge records supporting evidence, uncertainty, the strongest defense argument, and the specific evidence that would change the verdict.</p>
+        </article>
+        <article class="info-card">
+          <h3>5. Verified Proof</h3>
+          <p>The bundled demo runs pytest before and after a patch on a temporary copy. Uploaded and GitHub code is not executed by BugSleuth.</p>
+        </article>
+        <article class="info-card warning-card">
+          <h3>Human review remains essential</h3>
+          <p>BugSleuth does not automatically deploy changes to production. It is designed to support investigation, not replace human judgment or operational controls.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">VERDICT SYSTEM</span>
+        <h2>Clear, honest conclusions</h2>
+      </div>
+      <div class="content-grid four-up">
+        <article class="info-card verdict-card">
+          <h3>CONFIRMED</h3>
+          <p>Strong evidence and verification support the conclusion.</p>
+        </article>
+        <article class="info-card verdict-card">
+          <h3>MOST_LIKELY</h3>
+          <p>The evidence indicates a leading explanation, but complete proof is not yet available.</p>
+        </article>
+        <article class="info-card verdict-card">
+          <h3>MORE_EVIDENCE_NEEDED</h3>
+          <p>The available information is insufficient to identify a reliable leading explanation.</p>
+        </article>
+        <article class="info-card verdict-card">
+          <h3>REJECTED</h3>
+          <p>The available evidence contradicts the proposed hypothesis.</p>
+        </article>
+      </div>
+      <p class="supporting-text">
+        Uncertainty is an important feature, not a failure. BugSleuth is intentionally honest about what it knows, what it does not know, and what would change its view.
+      </p>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">IBM HACKATHON</span>
+        <h2>BobBuilders team project</h2>
+      </div>
+      <div class="content-grid two-up">
+        <div class="info-card">
+          <p>
+            BugSleuth was developed as part of the IBM TechXchange 2026 Pre-conference Dev Day Hackathon by the BobBuilders team. The project explores how agentic AI can support software development and operations workflows with greater transparency, evidence discipline, and adversarial review.
+          </p>
+        </div>
+        <div class="info-card">
+          <ul class="card-list">
+            <li>Specialized investigation roles</li>
+            <li>Parallel and independent analysis</li>
+            <li>Evidence-based reasoning</li>
+            <li>Adversarial review</li>
+            <li>Code investigation and verification planning</li>
+          </ul>
+        </div>
+      </div>
+      <p class="supporting-text">
+        This prototype implements a deterministic, evidence-first investigation flow and demonstrates the concepts important to the hackathon. It clearly distinguishes the current prototype capabilities from future IBM Bob integrations or broader agentic features.
+      </p>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">ABOUT THE TEAM</span>
+        <h2>BobBuilders</h2>
+      </div>
+      <div class="team-card">
+        <div class="team-header">
+          <div>
+            <p class="team-label">Team</p>
+            <h3>BobBuilders</h3>
+          </div>
+          <div>
+            <p class="team-label">Role</p>
+            <h3>Team Lead / Builder</h3>
+          </div>
+        </div>
+        <p class="team-background">
+          BugSleuth was created as a hackathon project exploring how AI can make software incident investigation more transparent, evidence-driven, and trustworthy. The project focuses on the idea that AI-generated conclusions should be supported by evidence and, whenever possible, verified through reproducible testing.
+        </p>
+        <div class="team-links">
+          <span>GitHub: <a href="https://ali-ahmed-cheema.github.io/" target="_blank" rel="noopener noreferrer">ali-ahmed-cheema.github.io</a></span>
+          <span>LinkedIn: <a href="https://www.linkedin.com/in/ali-ahmed-cheema" target="_blank" rel="noopener noreferrer">ali-ahmed-cheema</a></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">ABOUT THE CREATOR</span>
+        <h2>Ali Ahmed Cheema</h2>
+      </div>
+      <div class="team-card">
+        <div class="team-header">
+          <div>
+            <p class="team-label">Name</p>
+            <h3>Ali Ahmed Cheema</h3>
+          </div>
+          <div>
+            <p class="team-label">Email</p>
+            <h3><a href="mailto:heyitsalicheema@gmail.com">heyitsalicheema@gmail.com</a></h3>
+          </div>
+        </div>
+        <p class="team-background">
+          I build software with Python and C++, with a focus on practical problem-solving, clean code, and web interfaces. I enjoy taking a problem apart, understanding how the system should work, and turning that logic into working software. My work has involved application development, databases, testing, debugging, data structures, and frontend interfaces using technologies such as Python, C++, SQL, HTML, CSS, and related tools.
+        </p>
+        <p class="team-background">
+          I’ve worked on projects involving inventory management, database-driven applications, web development, and machine-learning-based prediction. These projects have helped me strengthen my programming fundamentals while learning how different parts of a software system work together.
+        </p>
+        <p class="team-background">
+          My current focus is growing as a junior software engineer and building practical applications that are readable, testable, and useful. Open to: Software Engineering Internships, Junior Software Engineering Roles, and selected Freelance Projects.
+        </p>
+        <div class="team-links">
+          <span>GitHub: <a href="https://ali-ahmed-cheema.github.io/" target="_blank" rel="noopener noreferrer">Portfolio</a></span>
+          <span>LinkedIn: <a href="https://www.linkedin.com/in/ali-ahmed-cheema" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>
+          <span>Email: <a href="mailto:heyitsalicheema@gmail.com">heyitsalicheema@gmail.com</a></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">BUGSLEUTH</div>
+      <div class="footer-subtitle">AI Incident Investigation Platform</div>
+      <p class="footer-copy">
+        BugSleuth is an AI-powered incident investigation platform built to help developers understand software failures through evidence, critical analysis, and verification. Instead of simply generating a probable answer, BugSleuth treats every potential root cause as a hypothesis that must be investigated, challenged, and supported by evidence.
+      </p>
+      <p class="footer-copy">
+        <strong>Don't just let AI find the bug. Make it prove its case.</strong> A BobBuilders project developed for the IBM TechXchange 2026 Pre-conference Dev Day Hackathon.
+      </p>
+      <div class="footer-row">
+        <div class="footer-actions" aria-label="Footer links">
+          <a href="/">Home</a>
+          <a href="/help">Help</a>
+          <a href="/about">About</a>
+          <a href="https://ali-ahmed-cheema.github.io/" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

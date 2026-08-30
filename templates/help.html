@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Help | BugSleuth</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="/" aria-label="BugSleuth home">
+        <span class="brand-mark">BS</span>
+        <span class="brand-text">
+          <strong>BUGSLEUTH</strong>
+          <small>AI Incident Investigation Platform</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <button type="button" id="header-new-investigation" class="nav-link-button primary">New Investigation</button>
+        <button type="button" id="header-demo-button" class="nav-link-button secondary">Demo Incident</button>
+        <a href="/help">Help</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-hero compact-hero">
+      <p class="kicker">HELP</p>
+      <h1>How BugSleuth works</h1>
+      <p class="hero-copy">
+        BugSleuth is designed to help you investigate available evidence, challenge explanations, and review a transparent summary of what is supported and what remains uncertain.
+      </p>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">GETTING STARTED</span>
+        <h2>Start a new investigation</h2>
+      </div>
+      <div class="content-grid two-up">
+        <div class="info-card">
+          <p>From the home page, use the new investigation flow to provide whatever evidence you have available. You do not need to know the root cause before you begin.</p>
+          <p>BugSleuth can investigate logs, source code ZIP uploads, public GitHub repositories, and a written observation.</p>
+        </div>
+        <div class="info-card">
+          <ul class="card-list">
+            <li>Choose the type of evidence you want to add</li>
+            <li>Provide logs, source files, a repo URL, or an observation</li>
+            <li>Start the investigation and monitor the evidence review stages</li>
+            <li>Review the findings, tribunal, and verdict</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">OPTION 1</span>
+        <h2>Try the demo incident</h2>
+      </div>
+      <div class="info-card">
+        <p>
+          The Demo Incident is a pre-configured sample application and incident included with BugSleuth. It allows you to experience the complete workflow without uploading your own project.
+        </p>
+        <ol class="numbered-list">
+          <li>Click “Try Demo Incident” from the home page or navigation.</li>
+          <li>Watch the investigation phases as BugSleuth collects evidence and analyzes the sample project.</li>
+          <li>Review the evidence, tribunal arguments, and verdict shown in the dashboard.</li>
+          <li>Examine the Confidence Ledger and proof section to understand what is established versus what remains uncertain.</li>
+          <li>Return to the home page using the available navigation controls when you are ready.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">OPTION 2</span>
+        <h2>Investigate your own project</h2>
+      </div>
+      <div class="content-grid three-up">
+        <article class="info-card">
+          <h3>GitHub repository</h3>
+          <p>Provide a supported public GitHub repository URL if you want BugSleuth to review a connected project. It can analyze the repository structure, project metadata, supplied history, and project files that are available.</p>
+          <p>Private repositories are not supported in this prototype. BugSleuth does not execute external code automatically.</p>
+        </article>
+        <article class="info-card">
+          <h3>ZIP upload</h3>
+          <p>Upload a project ZIP file to provide source code for inspection. The project is analyzed statically, and the supported file size limit is 20 MB.</p>
+          <p>Uploads are validated, sanitized, and stored temporarily under the local uploads directory. They are not automatically executed.</p>
+        </article>
+        <article class="info-card">
+          <h3>Log upload</h3>
+          <p>Upload log files or diagnostic output when they contain the most relevant incident evidence. Logs often reveal errors, warnings, timing, and failure patterns.</p>
+          <p>Replace or update the selected log file if needed before starting the investigation.</p>
+        </article>
+      </div>
+      <p class="supporting-text">
+        You can provide any evidence you have available. BugSleuth will investigate the information supplied and explain what the evidence supports.
+      </p>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">REPORTS</span>
+        <h2>Understanding your report</h2>
+      </div>
+      <div class="content-grid two-up">
+        <div class="info-card">
+          <ul class="card-list">
+            <li><strong>Project Intelligence:</strong> Details about the project structure, framework, tools, and observed context.</li>
+            <li><strong>Incident Timeline:</strong> Chronological events extracted from available evidence.</li>
+            <li><strong>Auditable Evidence:</strong> Directly cited material is assigned an E-NNN ID and marked as a Fact.</li>
+            <li><strong>AI Tribunal:</strong> The prosecutor, defense, and judge cite evidence, show a causal chain, and challenge assumptions.</li>
+            <li><strong>Judge Verdict:</strong> The current conclusion includes uncertainty, the strongest counterargument, and what evidence could change it.</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <ul class="card-list">
+            <li><strong>Confidence Ledger:</strong> Facts, alternative explanations, evidence for and against each hypothesis, and missing information.</li>
+            <li><strong>Verified Proof:</strong> The bundled demo can run a real RED → GREEN pytest check against a temporary copy. User code is never executed.</li>
+            <li><strong>DevOps & Delivery Context:</strong> Pipeline and deployment signals inferred from project configuration.</li>
+            <li><strong>Code Review Assistance:</strong> Similar patterns or risky code areas identified for human review.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="supporting-text">
+        The dashboard labels information as Fact, Reasoning, or Verified Proof. Confidence represents the strength of the available evidence, not a guarantee that a conclusion is correct.
+      </p>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">MOST_LIKELY</span>
+        <h2>Why does BugSleuth say “Most Likely”?</h2>
+      </div>
+      <div class="info-card">
+        <p>
+          When evidence is incomplete, BugSleuth can still identify a leading explanation while clearly communicating uncertainty. A <code>MOST_LIKELY</code> verdict means the available evidence suggests this is the strongest explanation, but additional logs, tests, or runtime verification could change the conclusion. The Judge panel names the strongest counterargument and lists the exact evidence that would change the verdict.
+        </p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">SECURITY</span>
+        <h2>Why is execution sometimes unavailable?</h2>
+      </div>
+      <div class="info-card">
+        <p>
+          BugSleuth does not automatically execute untrusted code from uploaded or external repositories. Executing unknown code can create security risks. The RED → GREEN verification button is available only for the bundled trusted demo and uses a temporary copy; static analysis remains available for user projects.
+        </p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">EVIDENCE & PRIVACY</span>
+        <h2>How your data is handled</h2>
+      </div>
+      <div class="info-card">
+        <p>
+          This prototype is designed for local use and a controlled investigation workflow. Uploaded logs, source ZIP files, and repository data are processed as evidence for the investigation and stored temporarily under the local uploads directory.
+        </p>
+        <p>
+          The application checks file size limits, sanitizes uploaded ZIP content, and avoids automatic execution of project code. This is a prototype, and it should not be treated as a production security boundary or a deployment system.
+        </p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="section-heading">
+        <span class="section-number">FAQ</span>
+        <h2>Common questions</h2>
+      </div>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Do I need to know what the bug is before starting an investigation?</h3>
+          <p>No. BugSleuth is designed to investigate available evidence and help identify possible causes.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Does BugSleuth automatically fix my production application?</h3>
+          <p>No. Any proposed fix should be reviewed and verified by a developer. BugSleuth must never automatically deploy changes to production.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What does “Most Likely” mean?</h3>
+          <p>It means BugSleuth found a leading explanation based on the available evidence, but the conclusion has not been fully proven.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can BugSleuth be wrong?</h3>
+          <p>Yes. AI-assisted analysis can make mistakes, which is why BugSleuth emphasizes evidence, alternative explanations, and human review.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Why are some investigation features unavailable?</h3>
+          <p>Available features depend on the evidence provided and the security limitations of the environment.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">BUGSLEUTH</div>
+      <div class="footer-subtitle">AI Incident Investigation Platform</div>
+      <p class="footer-copy">
+        BugSleuth is an AI-powered incident investigation platform built to help developers understand software failures through evidence, critical analysis, and verification. Instead of simply generating a probable answer, BugSleuth treats every potential root cause as a hypothesis that must be investigated, challenged, and supported by evidence.
+      </p>
+      <p class="footer-copy">
+        <strong>Don't just let AI find the bug. Make it prove its case.</strong> A BobBuilders project developed for the IBM TechXchange 2026 Pre-conference Dev Day Hackathon.
+      </p>
+      <div class="footer-row">
+        <div class="footer-actions" aria-label="Footer links">
+          <a href="/">Home</a>
+          <a href="/help">Help</a>
+          <a href="/about">About</a>
+          <a href="https://ali-ahmed-cheema.github.io/" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

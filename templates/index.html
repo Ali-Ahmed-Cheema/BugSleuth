@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BugSleuth | AI Incident Tribunal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="/" aria-label="BugSleuth home">
+        <span class="brand-mark">BS</span>
+        <span class="brand-text">
+          <strong>BUGSLEUTH</strong>
+          <small>AI Incident Investigation Platform</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <button type="button" id="header-new-investigation" class="nav-link-button primary">New Investigation</button>
+        <button type="button" id="header-demo-button" class="nav-link-button secondary">Demo Incident</button>
+        <a href="/help">Help</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+  <div id="demo-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Demo Investigation</h2>
+        <button class="modal-close" aria-label="Close modal">×</button>
+      </div>
+      <div class="modal-body">
+        <p>You are about to investigate a simulated incident from BugSleuth's built-in demonstration application.</p>
+        <p>This allows you to experience the complete investigation workflow without needing to upload your own evidence.</p>
+        <p class="demo-info"><strong>The Demo Application:</strong> A payment processing system with an intentional bug in amount validation.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="confirm-demo" class="primary-button">Start Demo Investigation</button>
+        <button id="cancel-demo" class="secondary-button">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <main>
+    <section id="landing" class="landing">
+      <div class="landing-copy"><p class="kicker">EVIDENCE-FIRST DEBUGGING</p><h1>Something went wrong?<br><em>Give us the evidence.</em></h1><p class="hero-copy">You do not need to know what is causing the problem. Connect your code and any evidence you have, and BugSleuth will build and challenge possible explanations.</p><div class="landing-actions"><button id="start-button">Start new investigation <span>↗</span></button><button id="demo-button" class="secondary-button">Try demo incident <span>↗</span></button></div></div>
+      <div class="signal-mark"><span>INCIDENT</span><strong>→</strong><span>EVIDENCE</span><strong>→</strong><span>PROOF</span></div>
+    </section>
+    <section id="submission" class="submission hidden">
+      <div class="nav-header">
+        <div class="section-heading"><span class="section-number">01</span><div><p class="kicker">NEW CASE</p><h2>Bring what you know.</h2></div></div>
+        <button id="back-home-submission" class="nav-button back-button" aria-label="Back to home">← Back to Home</button>
+      </div>
+      <p class="submission-intro">BugSleuth will investigate what you provide. An observation is enough to begin; you do not need to name the bug. You can add only one thing, but it is recommended to include logs and source files for the best investigation.</p>
+      <form id="investigation-form" class="evidence-form">
+        <label class="upload-panel"><span class="panel-icon">▤</span><span><strong>Application logs</strong><small>Upload logs, error reports, or diagnostic output.</small><small class="file-name" data-for="logs">.log or .txt</small><small class="file-warning" data-for="logs"></small></span><input id="logs" name="logs" type="file" accept=".log,.txt,text/plain"></label>
+        <label class="upload-panel"><span class="panel-icon">⌘</span><span><strong>Project source code</strong><small>Upload a ZIP. Source is inspected only, never executed.</small><small class="file-name" data-for="source_zip">.zip · max 20 MB</small><small class="file-warning" data-for="source_zip"></small></span><input id="source_zip" name="source_zip" type="file" accept=".zip,application/zip"></label>
+        <label class="observation-panel"><span class="panel-icon">🔗</span><span><strong>Public GitHub Repository URL</strong><small>Connect a public GitHub repository as evidence. Private repositories are not supported.</small></span><input id="github_repo_url" name="github_repo_url" type="url" placeholder="https://github.com/username/repository" style="width:100%; margin-top:12px; padding:12px; border:1px solid var(--line); background:#efeee7; font:14px 'Space Grotesk'; color:var(--ink);" /></label>
+        <label class="observation-panel"><span class="panel-icon">✎</span><span><strong>What did you notice?</strong><small>For example: “Errors started after today's deployment.”</small></span><textarea name="observation" rows="4" placeholder="Describe the symptoms, timing, or user impact..."></textarea></label>
+        <p id="form-error" class="form-error" role="alert"></p>
+        <button class="submit-button" type="submit">
+          <span class="button-spinner" aria-hidden="true"></span>
+          <span class="button-label">Begin investigation</span>
+          <span class="button-status" aria-live="polite"></span>
+          <span class="button-arrow" aria-hidden="true">↗</span>
+        </button>
+        <p id="submission-wait-status" class="processing-status hidden" aria-live="polite">Please wait patiently...</p>
+      </form>
+      <p class="safety-note">LOCAL PROTOTYPE · Uploaded files are stored temporarily, sanitized, and never executed.</p>
+    </section>
+    <section id="progress" class="progress-view hidden">
+      <div class="nav-header">
+        <div><p class="kicker">CASE <span id="progress-id"></span></p><h2>BugSleuth is examining the evidence.</h2></div>
+        <button id="back-home-progress" class="nav-button back-button" aria-label="Back to home">← Back to Home</button>
+      </div>
+      <div class="progress-list" aria-live="polite">
+        <div data-stage="0" class="active">01 <span>Collecting evidence</span><b><i class="loader" aria-hidden="true"></i><em>WORKING</em></b></div>
+        <div data-stage="1">02 <span>Analyzing supplied logs</span><b><i class="loader" aria-hidden="true"></i><em>QUEUED</em></b></div>
+        <div data-stage="2">03 <span>Inspecting source safely</span><b><i class="loader" aria-hidden="true"></i><em>QUEUED</em></b></div>
+        <div data-stage="3">04 <span>Opening the tribunal</span><b><i class="loader" aria-hidden="true"></i><em>QUEUED</em></b></div>
+        <div data-stage="4">05 <span>Preparing the ledger</span><b><i class="loader" aria-hidden="true"></i><em>QUEUED</em></b></div>
+      </div>
+      <div id="processing-status" class="processing-status" aria-live="polite">Please wait patiently...</div>
+    </section>
+    <section id="dashboard" class="hidden">
+      <div class="nav-header dashboard-nav">
+        <div></div>
+        <div class="nav-buttons">
+          <button id="new-investigation" class="nav-button primary-nav">Start New Investigation</button>
+          <button id="back-home-dashboard" class="nav-button back-button">← Back to Home</button>
+        </div>
+      </div>
+      <section class="incident-strip"><div><span>CASE</span><strong id="case-title">Investigation</strong></div><div><span>VERDICT</span><strong id="case-verdict" class="severity">PENDING</strong></div><div><span>OBSERVATION</span><strong id="case-observation">Not provided</strong></div><div><span>MODE</span><strong id="case-mode">USER INVESTIGATION</strong></div></section>
+      <section class="section-block summary-section" id="summary-section"><div class="section-heading"><span class="section-number">EX</span><div><p class="kicker">INVESTIGATION SUMMARY</p><h2>Executive overview</h2></div></div><div id="investigation-summary" class="summary-grid"></div></section>
+      <section class="section-block investigator-status-section"><div class="section-heading"><span class="section-number">00</span><div><p class="kicker">INVESTIGATION PROGRESS</p><h2>Investigator status</h2></div><span class="section-note">PARALLEL AGENTS</span></div><div id="investigator-timeline" class="investigator-timeline"></div></section>
+      <section class="section-block project-profile-section"><div class="section-heading"><span class="section-number">01</span><div><p class="kicker">PROJECT INTELLIGENCE</p><h2>Project profile</h2></div><span class="section-note">AUTOMATIC DISCOVERY</span></div><div id="project-profile" class="project-profile-grid"></div></section>
+      <section class="section-block timeline-section"><div class="section-heading"><span class="section-number">01A</span><div><p class="kicker">INCIDENT TIMELINE</p><h2>Chronological events</h2></div><span class="section-note">EXTRACTED EVIDENCE</span></div><div id="timeline" class="timeline-view"></div></section>
+      <section class="section-block trust-section"><div class="section-heading"><span class="section-number">01B</span><div><p class="kicker">AUDITABLE EVIDENCE</p><h2>Facts, reasoning, and proof</h2></div><span class="section-note">TRUST LAYER</span></div><div class="trust-pipeline" aria-label="Investigation pipeline"><span>COLLECT</span><b>→</b><span>CORRELATE</span><b>→</b><span>REASON</span><b>→</b><span>CHALLENGE</span><b>→</b><span>VERIFY</span><b>→</b><span>DECIDE</span></div><p class="trust-intro">Facts are extracted from supplied material. Reasoning interprets those facts. Proof is reserved for a controlled execution result.</p><div id="trust-status" class="trust-status"></div><div id="evidence-catalog" class="evidence-catalog"></div></section>
+      <section class="section-block"><div class="section-heading"><span class="section-number">02</span><div><p class="kicker">INDEPENDENT EVIDENCE</p><h2>What the evidence says.</h2></div><span class="section-note">INSPECTION COMPLETE</span></div><div id="investigators" class="investigator-grid"></div></section>
+      <section class="section-block tribunal-section"><div class="section-heading"><span class="section-number">03</span><div><p class="kicker">ADVERSARIAL REVIEW</p><h2>The tribunal challenges certainty.</h2></div></div><div id="tribunal" class="tribunal-grid"></div></section>
+      <section class="section-block ledger-section"><div class="section-heading"><span class="section-number">04</span><div><p class="kicker">TRANSPARENT RECORD</p><h2>Confidence ledger</h2></div><div id="verdict-badge" class="verdict-badge">PENDING</div></div><div id="ledger" class="ledger-grid"></div></section>
+      <section class="section-block recommended-actions-section"><div class="section-heading"><span class="section-number">05</span><div><p class="kicker">NEXT STEPS</p><h2>Recommended actions</h2></div><span class="section-note">IMPROVE ACCURACY</span></div><div id="recommended-actions" class="actions-grid"></div></section>
+      <section class="proof-section"><div class="section-heading"><span class="section-number">06</span><div><p class="kicker">EXECUTABLE VERIFICATION</p><h2>Proof, with honest limits.</h2></div></div><div id="proof" class="proof-grid"></div><div id="verification-action" class="verification-action"></div><div id="verification-result" class="verification-result"></div><pre id="diff" class="code-diff"></pre></section>
+      <section class="section-block devops-section"><div class="section-heading"><span class="section-number">07</span><div><p class="kicker">DEVOPS & DELIVERY CONTEXT</p><h2>Pipeline and deployment context</h2></div><span class="section-note">STATIC ANALYSIS ONLY</span></div><div id="devops-context" class="devops-grid"></div></section>
+      <section class="section-block similar-patterns-section"><div class="section-heading"><span class="section-number">08</span><div><p class="kicker">CODE REVIEW ASSISTANCE</p><h2>Similar patterns detected</h2></div><span class="section-note">FOR HUMAN REVIEW</span></div><div id="similar-patterns" class="similar-patterns-grid"></div></section>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">BUGSLEUTH</div>
+      <div class="footer-subtitle">AI Incident Investigation Platform</div>
+      <p class="footer-copy">
+        BugSleuth is an AI-powered incident investigation platform built to help developers understand software failures through evidence, critical analysis, and verification. Instead of simply generating a probable answer, BugSleuth treats every potential root cause as a hypothesis that must be investigated, challenged, and supported by evidence.
+      </p>
+      <p class="footer-copy">
+        <strong>Don't just let AI find the bug. Make it prove its case.</strong> A BobBuilders project developed for the IBM TechXchange 2026 Pre-conference Dev Day Hackathon.
+      </p>
+      <div class="footer-row">
+        <div class="footer-actions" aria-label="Footer links">
+          <a href="/">Home</a>
+          <a href="/help">Help</a>
+          <a href="/about">About</a>
+          <a href="https://ali-ahmed-cheema.github.io/" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+        <div class="result-footer-actions" aria-label="Result page footer actions">
+          <button id="result-footer-new-investigation" class="nav-button result-footer-button">Start New Investigation</button>
+          <button id="result-footer-back-home" class="nav-button result-footer-button result-footer-back">← Back to Home</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

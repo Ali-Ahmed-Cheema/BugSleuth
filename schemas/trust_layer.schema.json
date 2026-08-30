@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BugSleuth Trust Layer",
+  "type": "object",
+  "required": ["facts", "hypothesis", "tribunal", "verification"],
+  "properties": {
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "attribution", "source"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^E-[0-9]{3,}$"},
+          "type": {"type": "string"},
+          "attribution": {"const": "FACT"},
+          "source": {"type": "string"}
+        }
+      }
+    },
+    "hypothesis": {
+      "type": "object",
+      "required": ["id", "statement", "evidence_ids", "causal_chain"]
+    },
+    "tribunal": {
+      "type": "object",
+      "required": ["prosecutor", "defense", "judge"]
+    },
+    "verification": {
+      "type": "object",
+      "required": ["status", "execution_policy"]
+    }
+  }
+}

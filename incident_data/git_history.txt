@@ -1,0 +1,6 @@
+commit 8f2b100 (2026-08-28 16:20:04Z) Add payment receipt email
+commit 19ac441 (2026-08-28 17:03:22Z) Tune database pool idle timeout
+commit abc1234 (2026-08-29 09:58:47Z) Tighten payment amount validation
+  - if payment_amount is None:
+  + if not payment_amount:
+commit 4d991a0 (2026-08-29 10:05:12Z) Update deployment metadata for v2.4
