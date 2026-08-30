@@ -1,34 +1,59 @@
-# IBM Bob Session Screenshots
+# IBM Bob Task Session Summaries
 
-This directory contains exported IBM Bob task session summary screenshots for the **BugSleuth** project, submitted as part of the **IBM TechXchange 2026 Pre-conference Dev Day Hackathon** by Team **BobBuilders**.
+This directory contains exported IBM Bob task session summaries for the **BugSleuth** project, submitted as part of the **IBM TechXchange 2026 Pre-conference Dev Day Hackathon** by Team **BobBuilders**.
 
-These screenshots are a required hackathon deliverable. They document how IBM Bob was used as the primary development tool throughout the entire project.
-
----
-
-## How to Export Bob Session Screenshots
-
-From within IBM Bob:
-
-1. Open the task session you want to capture
-2. Click the **session summary** or **export** option from the task menu
-3. Save the screenshot as a `.png` or `.jpg` file
-4. Add the file to this directory with a descriptive filename (e.g., `01-architecture-design.png`)
+These are a required hackathon deliverable. They document how IBM Bob was used as the primary development tool throughout the entire project.
 
 ---
 
-## Sessions Documented
+## How to Export a Bob Task Session Summary
 
-Screenshots will be added here as the project progresses. Each screenshot corresponds to a major development session in IBM Bob, including:
+Bob can export a session summary as either **Markdown** or **JSON**:
 
-- Architecture design and system planning
-- Investigator module development
-- Tribunal (Prosecutor / Defense / Judge) implementation
-- Frontend (HTML / CSS / JavaScript) development
-- Test suite authoring (unit, integration, API)
-- Debugging and bug-fix sessions
-- Documentation and final review
+### Option A — Export as Markdown (`.md`)
+
+1. Open the task in IBM Bob
+2. Click the **"..."** menu at the top of the task panel
+3. Select **"Export"** → **"Export as Markdown"**
+4. Save the file into this directory with a descriptive name
+   - e.g. `01-architecture-design.md`
+
+### Option B — Export as JSON (`.json`)
+
+1. Open the task in IBM Bob
+2. Click the **"..."** menu at the top of the task panel
+3. Select **"Export"** → **"Export as JSON"**
+4. Save the file into this directory with a descriptive name
+   - e.g. `01-architecture-design.json`
+
+Either format is accepted. **Markdown is easier for judges to read directly on GitHub.**
 
 ---
 
-*See the project [README](../README.md) and [about_project.md](../about_project.md) for full details on how IBM Bob was used throughout the project.*
+## Sessions to Document
+
+Export a summary for each major Bob session used on this project:
+
+| # | Session | Suggested filename |
+|---|---|---|
+| 1 | Architecture design and system planning | `01-architecture-design.md` |
+| 2 | Investigators module development | `02-investigators.md` |
+| 3 | Tribunal (Prosecutor / Defense / Judge) | `03-tribunal.md` |
+| 4 | Frontend (HTML / CSS / JavaScript) | `04-frontend.md` |
+| 5 | Test suite (unit, integration, API) | `05-tests.md` |
+| 6 | Debugging and bug-fix sessions | `06-debugging.md` |
+| 7 | GitHub repo and documentation setup | `07-repo-setup.md` |
+
+---
+
+## After Adding Files — Push to GitHub
+
+```powershell
+git add bob-session-screenshots/
+git commit -m "Add Bob session summary exports"
+git push
+```
+
+---
+
+*See the project [README](../README.md) for full details on how IBM Bob was used throughout the project.*
